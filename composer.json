@@ -1,0 +1,18 @@
+{
+    "name": "chrisjohnson00/phue-service-bundle",
+    "license": "BSD-3-Clause",
+    "type": "bundle",
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        },
+        "classmap": [
+            "app/AppKernel.php",
+            "app/AppCache.php"
+        ]
+    },
+    "require": {
+        "php": ">=5.3.9",
+        "sqmk/phue": "~1.3"
+    }
+}

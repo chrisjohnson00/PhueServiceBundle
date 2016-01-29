@@ -1,0 +1,10 @@
+chrisjohnson00_phue:
+    resource: "@chrisjohnson00PhueBundle/Resources/config/routing.yml"
+    prefix:   /
+
+philips_hue_web_app:
+    resource: "@PhilipsHueWebAppBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+

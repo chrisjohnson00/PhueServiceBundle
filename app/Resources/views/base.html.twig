@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="language" content="English"/>
+    <meta name="keywords"
+          content="{% block keywords %}{% endblock %}">
+    <meta name="description"
+          content="{% block description %}{% endblock %}">
+    <link rel="alternate" href="http://www.prayeroftheworld.org" hreflang="en-us"/>
+    <title>{% block title %}{% endblock %}</title>
+    {% block head %}{% endblock %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <style>body{ padding-top: 50px; }</style>
+</head>
+<body>
+{% for flashMessage in app.session.flashbag.get('error') %}
+    <div class="alert alert-error">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4>Oh Snap!</h4>
+        {{ flashMessage|raw }}
+    </div>
+{% endfor %}
+{% for flashMessage in app.session.flashbag.get('success') %}
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4>Cheers, Mate!</h4>
+        {{ flashMessage|raw }}
+    </div>
+{% endfor %}
+{% for flashMessage in app.session.flashbag.get('info') %}
+    <div class="alert alert-info">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4>Heads Up!</h4>
+        {{ flashMessage|raw }}
+    </div>
+{% endfor %}
+{% for flashMessage in app.session.flashbag.get('notice') %}
+    <div class="alert alert-info">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4>HEY YOU!!</h4>
+        {{ flashMessage|raw }}
+    </div>
+{% endfor %}
+{% set routeName=app.request.attributes.get('_route') %}
+<div class="container" id="pageContainer">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                {#logo go here#}
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li{% if routeName=='home' %} class="active"{% endif %}><a class="navbar-brand"
+                                                                               href="{{ path('homepage') }}">Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="wrapper">{% block body %}{% block fos_user_content %}{% endblock %}{% endblock %}
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+{% block footerJS %}
+{% endblock %}
+</body>
+</html>
