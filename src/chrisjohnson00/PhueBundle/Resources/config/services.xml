@@ -6,12 +6,14 @@
 
     <parameters>
         <parameter key="chrisjohnson00_phue.client.class">Phue\Client</parameter>
+        <parameter key="chrisjohnson00_phue.service.class">chrisjohnson00\PhueBundle\Services\PhilipsHueService</parameter>
     </parameters>
 
     <services>
         <!-- Event Dispatcher -->
-        <service id="chrisjohnson00_phue.client" class="%chrisjohnson00_phue.client.class%" lazy="true">
+        <service id="chrisjohnson00_phue.client" class="%chrisjohnson00_phue.service.class%" lazy="true">
             <argument>%chrisjohnson00_phue.host%</argument> <!-- refactor this to use the database instead, to support multiple bridges -->
+            <argument>%chrisjohnson00_phue.client.class%</argument>
         </service>
     </services>
 </container>
